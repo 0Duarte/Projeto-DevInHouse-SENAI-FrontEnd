@@ -11,7 +11,8 @@
     "axios": "^1.5.0",
     "vue": "^3.3.4",
     "vue-router": "^4.2.4",
-    "vuetify": "^3.3.14"
+    "vuetify": "^3.3.14",
+    "yup": "^1.2.0"
   },
   "devDependencies": {
     "@mdi/font": "^7.2.96",
