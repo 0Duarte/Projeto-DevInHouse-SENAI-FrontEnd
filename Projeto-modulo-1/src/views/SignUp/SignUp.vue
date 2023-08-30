@@ -14,8 +14,7 @@
             <v-text-field v-model="password" type="password" density="compact" placeholder="Coloque sua senha"
                 prepend-inner-icon="mdi-lock-outline" variant="outlined"></v-text-field>
 
-            <div class="text-subtitle-1 text-medium-emphasis d-flex align-center justify-space-between">Confirme a senha
-            </div>
+            <div class="text-subtitle-1 text-medium-emphasis d-flex align-center justify-space-between">Confirme a senha</div>
             <v-text-field v-model="passwordConfirm" type="password" density="compact" placeholder="Confirme sua senha"
                 prepend-inner-icon="mdi-lock-outline" variant="outlined"></v-text-field>
 
@@ -60,6 +59,7 @@ export default {
             name: "",
             email: "",
             password: "",
+            passwordConfirm: "",
             errors: [],
             items: [
                 { plan: 'Bronze', value: 'bronze' },
@@ -98,11 +98,30 @@ export default {
                     },
                     { abortEarly: false }
                 )
+
+                    axios({
+                        url:'http://localhost:3000/users',
+                        method: 'POST',
+                        data: {
+                            name: this.name,
+                            email: this.email,
+                            password: this.password,
+                            type_plan: this.planSelected
+                        }
+                    })
+                        .then(()=> {
+                            alert('Cadastrado com sucesso')
+                            this.$router.push('/login')
+                        })
+                        .catch(()=>{
+                            alert("Não foi possível criar a conta nesse momento")
+                        })
+                    
+                    debugger
+
             } catch (error) {
                 if (error instanceof yup.ValidationError) {
-                    console.log(error)
                     this.errors = captureErrorYup(error)
-                    console.log(this.errors)
                 }
             }
         }
