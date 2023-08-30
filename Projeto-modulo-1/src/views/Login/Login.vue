@@ -27,9 +27,9 @@
 
       <v-card-text class="text-center">
         <p>Ainda não tem conta?</p>
-        <a class="text-blue text-decoration-none" href="#" rel="noopener noreferrer" target="_blank">
+        <router-link to="/signup" class="text-blue text-decoration-none">
           Cadastre-se<v-icon icon="mdi-chevron-right"></v-icon>
-        </a>
+        </router-link>
       </v-card-text>
     </v-card>
   </div>
