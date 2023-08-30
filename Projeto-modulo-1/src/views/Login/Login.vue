@@ -8,11 +8,11 @@
 
       <div class="text-subtitle-1 text-medium-emphasis d-flex align-center justify-space-between">Senha</div>
 
-      <v-text-field v-model="password" :append-inner-icon="visible ? 'mdi-eye-off' : 'mdi-eye'"
-        :type="visible ? 'text' : 'password'" density="compact" placeholder="Coloque sua senha"
-        prepend-inner-icon="mdi-lock-outline" variant="outlined" @click:append-inner="visible = !visible"></v-text-field>
+      <v-text-field v-model="password"
+        type='password' density="compact" placeholder="Coloque sua senha"
+        prepend-inner-icon="mdi-lock-outline" variant="outlined"></v-text-field>
 
-      <v-card class="mb-4">
+      <v-card v-if="errors.length != 0" id="errorField" class="mb-4">
         <v-card-text class="text-medium-emphasis text-caption">
           <div class="d-flex flex-column ">
             <p class="mb-2">{{this.errors.email}}</p>
@@ -64,6 +64,24 @@ export default {
           },
           { abortEarly: false }
         )
+
+          axios({
+            url: 'http://localhost:3000/sessions',
+            method: 'POST',
+            data:{
+              email: this.email,
+              password: this.password
+            }
+          })
+          .then((response)=>{
+            localStorage.setItem("user_token", response.data.token)
+            console.log("usuario existe")
+            
+          })
+          .catch((error)=>{
+            console.log(error)
+          })
+
       } catch (error) {
         if (error instanceof yup.ValidationError) {
           console.log(error)
