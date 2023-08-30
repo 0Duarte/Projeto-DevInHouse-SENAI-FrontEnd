@@ -22,7 +22,7 @@
             <v-select  density="compact" :items="items" item-value="value" variant="outlined" item-title="plan"
                 v-model="planSelected"></v-select>
 
-            <v-card class="mb-4">
+            <v-card v-if="errors.length != 0" class="mb-4">
                 <v-card-text class="text-medium-emphasis text-caption">
                     <div class="d-flex flex-column">
                         <p>{{ this.errors.name }}</p>
