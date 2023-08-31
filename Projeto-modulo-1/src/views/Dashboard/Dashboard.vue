@@ -1,32 +1,33 @@
 <template>
-    <v-container>
+    <v-container  class="d-flex flex-column mt-15">
         <div>
             <h1>Bem vindo fulano</h1>
         </div>
-        <div class="d-flex">
-            <v-card class="mx-auto" width="100%" max-width="344" variant="outlined">
-                <v-card-item>
+        <div class="d-flex flex-wrap my-15 justify-space-between">
+            <v-card class="d-flex w-100" size="x-large" max-width="344" variant="outlined">
                     <div>
-                        <div class="text-h6 mb-1">{{this.amountStudents}} Alunos</div>
+                        <v-card-item>
+                                <div class="text-h6 mb-1">{{this.amountStudents}} Alunos</div>
+                        </v-card-item>
+                        <v-card-actions>
+                            <v-btn variant="outlined">
+                                Adicionar
+                            </v-btn>
+                        </v-card-actions>
                     </div>
-                </v-card-item>
-                <v-card-actions>
-                    <v-btn variant="outlined">
-                        Adicionar
-                    </v-btn>
-                </v-card-actions>
             </v-card>
-            <v-card class="mx-auto" width="100%" max-width="344" variant="outlined">
-                <v-card-item>
+
+            <v-card class="d-flex w-100" size="x-large" max-width="344" variant="outlined">
                     <div>
-                        <div class="text-h6 mb-1">{{this.amountExercises}} Exercícios</div>
+                        <v-card-item>
+                                <div class="text-h6 mb-1">{{this.amountExercises}} Exercícios</div>
+                        </v-card-item>
+                        <v-card-actions>
+                            <v-btn variant="outlined">
+                                Adicionar
+                            </v-btn>
+                        </v-card-actions>
                     </div>
-                </v-card-item>
-                <v-card-actions>
-                    <v-btn variant="outlined">
-                        Adicionar
-                    </v-btn>
-                </v-card-actions>
             </v-card>
         </div>
 
