@@ -75,6 +75,7 @@ export default {
           })
           .then((response)=>{
             localStorage.setItem("user_token", response.data.token)
+            localStorage.setItem("user_name", response.data.name)
             console.log("usuario existe")
             
           })
