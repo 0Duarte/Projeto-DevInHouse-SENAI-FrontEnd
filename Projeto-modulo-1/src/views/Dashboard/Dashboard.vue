@@ -1,9 +1,9 @@
 <template>
     <v-container  class="d-flex flex-column mt-15">
         <div>
-            <h1>Bem vindo fulano</h1>
+            <h1>Bem vindo, {{this.userName}}</h1>
         </div>
-        <div class="d-flex flex-wrap my-15 justify-space-between">
+        <div class="d-flex flex-wrap my-15 justify-space-around">
             <v-card class="d-flex w-100" size="x-large" max-width="344" variant="outlined">
                     <div>
                         <v-card-item>
@@ -41,15 +41,20 @@ export default {
        return{
         amountStudents: 0,
         amountExercises: 0,
+        userName: ""
        }
     },
     methods: {
         loadDashboard() {
             console.log("entrou aq")
+            const token= localStorage.getItem('user_token')
 
             axios({
                 url: 'http://localhost:3000/dashboard',
                 method: 'GET',
+                headers: {
+                    Authorization: `Bearen ${token}`
+                }
             })
             .then((res)=>{
                 this.amountStudents=res.data.amount_students
@@ -62,6 +67,7 @@ export default {
     },
     mounted(){
         this.loadDashboard()
+        this.userName= localStorage.getItem('user_name')
         console.log("entreou aq")
     }
 }
