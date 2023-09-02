@@ -1,17 +1,18 @@
 <template>
-    <v-form @submit.prevent="handleSubmit" class="d-flex h-100 align-center">
+    <v-form @submit.prevent="handleSubmit" ref="form" class="d-flex h-100 align-center">
         <v-card class="mx-auto pa-12 pb-8" elevation="8" width="800" rounded="lg">
             <div class="d-flex justify-space-between">
                 <div class="w-50 mr-4">
                     <div class="text-subtitle-1 text-medium-emphasis d-flex align-center">Nome completo</div>
-                    <v-text-field v-model="name" density="compact" placeholder="Coloque o nome do aluno"
-                        variant="outlined"></v-text-field>
+                    <v-text-field v-model="name" density="compact" placeholder="Coloque o nome do aluno" variant="outlined"
+                        :rules="[v => !!v || 'Nome é obrigatório']" required></v-text-field>
                 </div>
 
                 <div class="w-50">
                     <div class="text-subtitle-1 text-medium-emphasis d-flex align-center">Email</div>
                     <v-text-field type="email" v-model="email" density="compact" placeholder="xxxx@xxx.com"
-                        variant="outlined" :rules="[() => !!name || 'Nome é obrigatório']"></v-text-field>
+                        variant="outlined"
+                        :rules="[v => !!(v || '').match(/@/) || 'Utilize um email válido']"></v-text-field>
                 </div>
             </div>
 
@@ -19,12 +20,13 @@
                 <div class="w-50 mr-4">
                     <div class="text-subtitle-1 text-medium-emphasis d-flex align-center">Contato</div>
                     <v-text-field type="number" v-model="contact" density="compact" placeholder="(00) 00000-0000"
-                        variant="outlined"></v-text-field>
+                        variant="outlined" :rules="[v => !!v || 'Contato é obrigatório']"></v-text-field>
                 </div>
 
                 <div class="w-50">
                     <div class="text-subtitle-1 text-medium-emphasis d-flex align-center">Data de nascimento</div>
-                    <VueDatePicker v-model="date" :max-date="new Date()" variant="outlined" />
+                    <v-text-field type="date" v-model="date" density="compact" placeholder="(00) 00000-0000"
+                        variant="outlined" :rules="[v => v < this.today || 'Data futura']"></v-text-field>
                 </div>
 
             </div>
@@ -32,33 +34,38 @@
             <div class="d-flex justify-space-between">
                 <div class="w-25 mr-3">
                     <div class="text-subtitle-1 text-medium-emphasis d-flex align-center">CEP</div>
-                    <v-text-field type="number" v-model="cep" density="compact" placeholder="00000-000"
-                        variant="outlined"></v-text-field>
+                    <v-text-field type="number" v-model="cep" density="compact" placeholder="00000-000" variant="outlined"
+                        @blur="useCep" :rules="[v => !!v || 'CEP é obrigatório']"></v-text-field>
                 </div>
 
                 <div class="w-25 mr-3">
                     <div class="text-subtitle-1 text-medium-emphasis d-flex align-center">Estado</div>
-                    <v-text-field v-model="province" density="compact" variant="outlined"></v-text-field>
+                    <v-text-field v-model="province" density="compact" variant="outlined"
+                        :rules="[v => !!v || 'Estado é obrigatório']"></v-text-field>
                 </div>
                 <div class="w-50">
                     <div class="text-subtitle-1 text-medium-emphasis d-flex align-center">Cidade</div>
-                    <v-text-field v-model="city" density="compact" variant="outlined"></v-text-field>
+                    <v-text-field v-model="city" density="compact" variant="outlined"
+                        :rules="[v => !!v || 'Cidade é obrigatório']"></v-text-field>
                 </div>
             </div>
 
             <div class="d-flex justify-space-between">
                 <div class="w-50 mr-4">
                     <div class="text-subtitle-1 text-medium-emphasis d-flex align-center">Número</div>
-                    <v-text-field type="number" v-model="number" density="compact" variant="outlined"></v-text-field>
+                    <v-text-field type="number" v-model="number" density="compact" variant="outlined"
+                        :rules="[v => !!v || 'Número é obrigatório']"></v-text-field>
                 </div>
 
                 <div class="w-50 mr-4">
                     <div class="text-subtitle-1 text-medium-emphasis d-flex align-center">Logradouro</div>
-                    <v-text-field v-model="street" density="compact" variant="outlined"></v-text-field>
+                    <v-text-field v-model="street" density="compact" variant="outlined"
+                        :rules="[v => !!v || 'Logradouro é obrigatório']"></v-text-field>
                 </div>
                 <div class="w-50">
                     <div class="text-subtitle-1 text-medium-emphasis d-flex align-center">Bairro</div>
-                    <v-text-field v-model="neighborhood" density="compact" variant="outlined"></v-text-field>
+                    <v-text-field v-model="neighborhood" density="compact" variant="outlined"
+                        :rules="[v => !!v || 'Bairro é obrigatório']"></v-text-field>
                 </div>
             </div>
             <div class="d-flex">
@@ -79,10 +86,8 @@
 </template>
 
 <script>
-import moment from 'moment'
-import * as yup from 'yup'
 import axios from 'axios';
-
+import moment from 'moment'
 export default {
     data() {
         return {
@@ -96,53 +101,50 @@ export default {
             number: '',
             street: '',
             neighborhood: '',
-            complement: ''
+            complement: '',
+            today: moment(new Date).format("YYYY-MM-DD")
         }
     },
     methods: {
-        handleSubmit() {
-            let formatDate = moment(this.date).format("DD/MM/YYYY")
-
-
-            const schema = yup.object().shape({
-                name: yup.string().required("Nome completo é obrigatório"),
-                email: yup.string().email('Email não é válido'),
-                contact: yup.number().required("Contato é obrigatório"),
-                date: yup.max(new Date(), 'Não é possível incluir uma data futura'),
-                cep: yup.number().required("CEP é obrigatório"),
-                province: yup.string().required("Estado é obrigatório"),
-                city: yup.string().required("Cidade é obrigatório"),
-                number: yup.number().required("Número é obrigatório"),
-                street: yup.string().required("Rua é obrigatório"),
-                neighborhood: yup.string().required("Bairro é obrigatório")
-
-
-
-            })
-
-            schema.validateSync(
-                {
+        async handleSubmit() {
+            const { valid } = await this.$refs.form.validate()
+            if (!valid) {
+                return
+            }
+            axios({
+                url: 'http://localhost:3000/students',
+                method: 'POST',
+                data: {
                     name: this.name,
                     email: this.email,
                     contact: this.contact,
-                    date: formatDate,
+                    date_birth: this.date,
                     cep: this.cep,
-                    province: this.province,
-                    city: this.city,
-                    number: this.number,
                     street: this.street,
-                    neighborhood: this.neighborhood
-                },
-                { abortEarly: false }
-            )
+                    number: this.number,
+                    neighborhood: this.neighborhood,
+                    city: this.city,
+                    province: this.province,
+                    complment: this.complement
+                }
+            })
+            .then(()=>{
+                alert("aluno cadastrado com sucesso")
+                this.$refs.form.reset()
+            })
+            .catch((error)=>{
+                alert("falha no cadastro")
+            })
 
-
-
-
-
+        },
+        useCep() {
+            const token= localStorage.getItem('user_token')
             axios({
                 url: `http://viacep.com.br/ws/${this.cep}/json/`,
-                method: 'GET'
+                method: 'GET',
+                headers: {
+                    Authorization: `Bearen ${token}`
+                }
             })
                 .then((res) => {
 
