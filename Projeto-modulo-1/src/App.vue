@@ -1,5 +1,4 @@
 <template>
-  <div>
     <v-layout>
       <v-app-bar v-if="shouldRenderComponent"
         color="rgb(246, 86, 38)">
@@ -29,7 +28,6 @@
         <router-view></router-view>
       </v-main>
     </v-layout>
-  </div>
 </template>
 
 <script>

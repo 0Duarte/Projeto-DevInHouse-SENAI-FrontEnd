@@ -1,0 +1,9 @@
+:root {
+    --color-primary: rgb(246, 86, 38);
+  }
+body{
+    height: 100vh;
+}
+#app, .v-layout{
+    height: 100%;
+}
