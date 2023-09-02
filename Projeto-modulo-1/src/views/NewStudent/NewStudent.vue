@@ -100,7 +100,58 @@ export default {
         }
     },
     methods: {
-        
+        handleSubmit() {
+            let formatDate = moment(this.date).format("DD/MM/YYYY")
+
+
+            const schema = yup.object().shape({
+                name: yup.string().required("Nome completo é obrigatório"),
+                email: yup.string().email('Email não é válido'),
+                contact: yup.number().required("Contato é obrigatório"),
+                date: yup.max(new Date(), 'Não é possível incluir uma data futura'),
+                cep: yup.number().required("CEP é obrigatório"),
+                province: yup.string().required("Estado é obrigatório"),
+                city: yup.string().required("Cidade é obrigatório"),
+                number: yup.number().required("Número é obrigatório"),
+                street: yup.string().required("Rua é obrigatório"),
+                neighborhood: yup.string().required("Bairro é obrigatório")
+
+
+
+            })
+
+            schema.validateSync(
+                {
+                    name: this.name,
+                    email: this.email,
+                    contact: this.contact,
+                    date: formatDate,
+                    cep: this.cep,
+                    province: this.province,
+                    city: this.city,
+                    number: this.number,
+                    street: this.street,
+                    neighborhood: this.neighborhood
+                },
+                { abortEarly: false }
+            )
+
+
+
+
+
+            axios({
+                url: `http://viacep.com.br/ws/${this.cep}/json/`,
+                method: 'GET'
+            })
+                .then((res) => {
+
+                    this.province = res.data.uf,
+                        this.city = res.data.localidade,
+                        this.street = res.data.logradouro,
+                        this.neighborhood = res.data.bairro
+                })
+        }
     }
 }
 </script>
