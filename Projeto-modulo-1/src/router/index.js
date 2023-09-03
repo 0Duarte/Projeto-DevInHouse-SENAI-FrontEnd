@@ -5,6 +5,7 @@ import SignUp from '../views/SignUp/SignUp.vue'
 import Dashboard from '../views/Dashboard/Dashboard.vue'
 import NewStudent from '../views/NewStudent/NewStudent.vue'
 import ListStudent from '../views/ListStudent/ListStudent.vue'
+import Exercises from '../views/Exercises/Exercises.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -38,6 +39,11 @@ const router = createRouter({
       path: '/student/list',
       name: 'ListStudent',
       component: ListStudent
+    },
+    {
+      path: '/exercises',
+      name: 'Exercises',
+      component: Exercises
     }
     
   ]
