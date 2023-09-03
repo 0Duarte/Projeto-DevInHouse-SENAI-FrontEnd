@@ -1,0 +1,56 @@
+{
+  "hash": "f6695e12",
+  "browserHash": "f2865629",
+  "optimized": {
+    "vue": {
+      "src": "../../node_modules/vue/dist/vue.runtime.esm-bundler.js",
+      "file": "vue.js",
+      "fileHash": "b5f57a72",
+      "needsInterop": false
+    },
+    "vuetify": {
+      "src": "../../node_modules/vuetify/lib/framework.mjs",
+      "file": "vuetify.js",
+      "fileHash": "43cd2cca",
+      "needsInterop": false
+    },
+    "vuetify/components": {
+      "src": "../../node_modules/vuetify/lib/components/index.mjs",
+      "file": "vuetify_components.js",
+      "fileHash": "7600b5c0",
+      "needsInterop": false
+    },
+    "vuetify/directives": {
+      "src": "../../node_modules/vuetify/lib/directives/index.mjs",
+      "file": "vuetify_directives.js",
+      "fileHash": "6bad303e",
+      "needsInterop": false
+    },
+    "@vuepic/vue-datepicker": {
+      "src": "../../node_modules/@vuepic/vue-datepicker/dist/vue-datepicker.js",
+      "file": "@vuepic_vue-datepicker.js",
+      "fileHash": "acb4ac90",
+      "needsInterop": false
+    },
+    "vue-router": {
+      "src": "../../node_modules/vue-router/dist/vue-router.mjs",
+      "file": "vue-router.js",
+      "fileHash": "bb58f99a",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "chunk-VHUGKBFS": {
+      "file": "chunk-VHUGKBFS.js"
+    },
+    "chunk-622XO4P2": {
+      "file": "chunk-622XO4P2.js"
+    },
+    "chunk-RNIKTEPO": {
+      "file": "chunk-RNIKTEPO.js"
+    },
+    "chunk-QNGQRF5U": {
+      "file": "chunk-QNGQRF5U.js"
+    }
+  }
+}
