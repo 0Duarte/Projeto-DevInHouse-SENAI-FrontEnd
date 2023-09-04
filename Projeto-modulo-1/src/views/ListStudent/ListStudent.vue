@@ -20,8 +20,8 @@
         <tr v-for="student in filteredStudents" :key="student.id">
           <td>{{ student.name }}</td>
           <td>
-            <v-btn variant="outlined" color="success" density="compact" class="mr-4 text-capitalize">Ver</v-btn>
-            <v-btn variant="outlined" color="success" density="compact" class="text-capitalize">Montar treino</v-btn>
+            <v-btn @click="see(student.id)" variant="outlined" color="success" density="compact" class="mr-4 text-capitalize">Ver</v-btn>
+            <v-btn @click="CreateWorkout(student.id)" variant="outlined" color="success" density="compact" class="text-capitalize">Montar treino</v-btn>
           </td>
         </tr>
       </tbody>
@@ -63,6 +63,9 @@ export default {
         .catch((error) => {
           console.log(error);
         });
+    },
+    CreateWorkout(userId){
+      this.$router.push({ name: 'TrainingRegister', params: { id: userId } })
     }
   },
   mounted() {
