@@ -1,5 +1,5 @@
 <template>
-    <v-form @submit.prevent="handleTraining" ref="form" class="d-flex h-100 align-center">
+    <v-form @submit.prevent="handleWorkout" ref="form" class="d-flex h-100 align-center">
         <v-card class="mx-auto pa-12 pb-8" elevation="8" width="800" rounded="lg">
             <div>
                 <div>
@@ -106,7 +106,7 @@ export default {
                 console.log("Não foi possível carregar os exercícios")
             })
         },
-        async handleTraining(){
+        async handleWorkout(){
             const { valid } = await this.$refs.form.validate()
             if (!valid) {
                 return

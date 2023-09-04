@@ -6,7 +6,7 @@ import Dashboard from '../views/Dashboard/Dashboard.vue'
 import NewStudent from '../views/NewStudent/NewStudent.vue'
 import ListStudent from '../views/ListStudent/ListStudent.vue'
 import Exercises from '../views/Exercises/Exercises.vue'
-import TrainingRegister from '../views/TrainingRegister/TrainingRegister.vue'
+import WorkoutRegister from '../views/WorkoutRegister/WorkoutRegister.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -47,9 +47,9 @@ const router = createRouter({
       component: Exercises
     },
     {
-      path: '/training/register',
-      name: 'TrainingRegister',
-      component: TrainingRegister
+      path: '/workout/register',
+      name: 'WorkoutRegister',
+      component: WorkoutRegister
     }
     
   ]
