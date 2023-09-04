@@ -65,7 +65,7 @@ export default {
         });
     },
     CreateWorkout(userId){
-      this.$router.push({ name: 'TrainingRegister', params: { id: userId } })
+      this.$router.push({ name: 'WorkoutRegister', params: { id: userId } })
     }
   },
   mounted() {
