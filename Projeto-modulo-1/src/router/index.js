@@ -7,6 +7,7 @@ import NewStudent from '../views/NewStudent/NewStudent.vue'
 import ListStudent from '../views/ListStudent/ListStudent.vue'
 import Exercises from '../views/Exercises/Exercises.vue'
 import WorkoutRegister from '../views/WorkoutRegister/WorkoutRegister.vue'
+import ViewWorkout from '../views/WorkoutRegister/WorkoutRegister.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -49,6 +50,11 @@ const router = createRouter({
     {
       path: '/workout/register',
       name: 'WorkoutRegister',
+      component: WorkoutRegister
+    },
+    {
+      path: '/workout/view',
+      name: 'ViewWorkout',
       component: WorkoutRegister
     }
     
