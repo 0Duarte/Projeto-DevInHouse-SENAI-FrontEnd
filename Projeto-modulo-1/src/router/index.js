@@ -47,7 +47,7 @@ const router = createRouter({
       component: Exercises
     },
     {
-      path: '/training/register',
+      path: '/training/register/:id',
       name: 'TrainingRegister',
       component: TrainingRegister
     }

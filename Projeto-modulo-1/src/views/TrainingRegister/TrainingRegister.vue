@@ -19,7 +19,7 @@
                 <div class="w-25 mr-3">
                     <div class="text-subtitle-1 text-medium-emphasis d-flex align-center">Carga</div>
                     <v-text-field type="number" placeholder="Kg" v-model="weight" density="compact" variant="outlined"
-                        :rules="[v => v > 0 || 'Carga é obrigatória']"></v-text-field>
+                        :rules="[v => v > 0 || 'Carga é obrigatória']" suffix="kg"></v-text-field>
                 </div>
                 <div class="w-50">
                     <div class="text-subtitle-1 text-medium-emphasis d-flex align-center">Pausa</div>
@@ -58,9 +58,9 @@ import axios from 'axios'
 export default {
     data() {
         return {
-            weight: null,
-            repetitions: null,
-            breakTime: null,
+            weight: 0,
+            repetitions: 0,
+            breakTime: "",
             observations: '',
             items: [
                 { day: 'Segunda-feira', value: 'segunda' },
@@ -74,13 +74,13 @@ export default {
             ],
             day: '',
             exercises: [],
-            exerciseId: []
+            exerciseId: '',
+            studentId: ''
         }
     },
     methods: {
         getDay() {
             let today = moment(new Date).format('dddd')
-            console.log(today)
             this.day = today === "Sunday" ? "domingo" :
                     today === "Saturday" ? "sabado" :
                     today === "Monday" ? "segunda" :
@@ -107,17 +107,20 @@ export default {
             })
         },
         async handleTraining(){
+            const token = localStorage.getItem('user_token')
             const { valid } = await this.$refs.form.validate()
             if (!valid) {
                 return
             }
-            console.log(this.breakTime)
             axios({
                 
-                url: 'http://localhost:3000/workout',
+                url: 'http://localhost:3000/workouts',
                 method: 'POST',
+                headers: {
+                    Authorization: `Bearen ${token}`
+                },
                 data:{
-                    student_id: '',
+                    student_id: this.studentId,
                     exercise_id: this.exerciseId,
                     repetitions: this.repetitions,
                     weight: this.weight,
@@ -128,18 +131,20 @@ export default {
             })
             .then(()=>{
                 console.log("Sucesso ao cadastrar treino")
+                this.$refs.form.reset()
             })
             .catch((err)=>{
                 console.log("Erro ao cadastrar treino")
             })
         },
-        teste(){
-            console.log(this.exercise)
+        getStudentId(){
+            this.studentId = this.$route.params.id
         }
     },
     mounted() {
         this.getDay()
         this.getExercises()
+        this.getStudentId()
     }
 
 }
