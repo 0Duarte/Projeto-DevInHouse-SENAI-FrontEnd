@@ -1,7 +1,7 @@
 <template>
     <v-container>
         <header class="d-flex justify-space-between">
-            <h3>Treinos - {{ user_id }}</h3>
+            <h3>Treinos - {{ this.workouts[1].student_name }}</h3>
             <v-btn color="success" variant='outlined'>Novo</v-btn>
         </header>
         <v-divider class="mt-2" color="black" :thickness="3"></v-divider>
@@ -47,15 +47,33 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
     data() {
         return {
             toggle: null,
-            user_id: ''
+            student_id: '',
+            workouts: [ ]
+
+        }
+    },methods:{
+        getWorkouts(){
+            axios({
+                url: `http://localhost:3000/workouts?student_id=${this.student_id}`,
+                method: 'GET'
+            })
+            .then((res)=>{
+                this.workouts=(res.data.workouts)
+            })
+            .catch(()=>{
+                console.log("deu ruim")
+            })
         }
     },
     mounted() {
-        this.user_id = localStorage.getItem('user_name')
+        this.student_id=this.$route.params.id 
+        this.getWorkouts()
     }
 
 }
