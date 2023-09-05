@@ -53,7 +53,7 @@ const router = createRouter({
       component: WorkoutRegister
     },
     {
-      path: '/workout/view',
+      path: '/workout/view/:id',
       name: 'ViewWorkout',
       component: ViewWorkout
     }
