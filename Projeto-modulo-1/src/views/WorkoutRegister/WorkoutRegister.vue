@@ -117,7 +117,7 @@ export default {
                 url: 'http://localhost:3000/workout',
                 method: 'POST',
                 data:{
-                    student_id: '',
+                    student_id:  this.$route.params.id,
                     exercise_id: this.exerciseId,
                     repetitions: this.repetitions,
                     weight: this.weight,
