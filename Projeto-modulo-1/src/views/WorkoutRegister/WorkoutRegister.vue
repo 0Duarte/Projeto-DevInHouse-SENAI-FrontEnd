@@ -114,7 +114,7 @@ export default {
             console.log(this.breakTime)
             axios({
                 
-                url: 'http://localhost:3000/workout',
+                url: 'http://localhost:3000/workouts',
                 method: 'POST',
                 data:{
                     student_id:  this.$route.params.id,
