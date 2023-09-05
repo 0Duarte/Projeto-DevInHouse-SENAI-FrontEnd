@@ -20,8 +20,8 @@
         <tr v-for="student in filteredStudents" :key="student.id">
           <td>{{ student.name }}</td>
           <td>
-            <v-btn @click="ViewWorkout(student.id)" variant="outlined" color="success" density="compact" class="mr-4 text-capitalize">Ver</v-btn>
-            <v-btn @click="CreateWorkout(student.id)" variant="outlined" color="success" density="compact" class="text-capitalize">Montar treino</v-btn>
+            <v-btn @click="ViewWorkout(student.id,student.name)" variant="outlined" color="success" density="compact" class="mr-4 text-capitalize">Ver</v-btn>
+            <v-btn @click="CreateWorkout(student.id, student.name)" variant="outlined" color="success" density="compact" class="text-capitalize">Montar treino</v-btn>
           </td>
         </tr>
       </tbody>
@@ -64,11 +64,11 @@ export default {
           console.log(error);
         });
     },
-    CreateWorkout(userId){
-      this.$router.push({ name: 'WorkoutRegister', params: { id: userId } })
+    CreateWorkout(userId, userName){
+      this.$router.push({ name: 'WorkoutRegister', params: { id: userId, name: userName} })
     },
-    ViewWorkout(userId){
-      this.$router.push({ name: 'ViewWorkout', params: { id: userId } })
+    ViewWorkout(userId, userName){
+      this.$router.push({ name: 'ViewWorkout', params: { id: userId, name: userName} })
     }
   },
   mounted() {
