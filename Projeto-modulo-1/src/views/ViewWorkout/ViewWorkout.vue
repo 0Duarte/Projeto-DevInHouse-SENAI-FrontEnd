@@ -1,7 +1,7 @@
 <template>
     <v-container>
         <header class="d-flex justify-space-between">
-            <h3>Treinos - {{ this.workouts[1].student_name }}</h3>
+            <h3>Treinos - {{ this.student_name }} </h3>
             <v-btn color="success" variant='outlined'>Novo</v-btn>
         </header>
         <v-divider class="mt-2" color="black" :thickness="3"></v-divider>
@@ -22,27 +22,11 @@
         </div> -->
         <h1>Hoje</h1>
 
-        <v-checkbox label="Checkbox"></v-checkbox>
+        <div v-for="workout in this.workouts">
+            <v-checkbox :label="`${workout.exercise_description} | ${workout.weight}KG | ${workout.repetitions} repetições | ${workout.break_time} min de pausa`" density="compact" hide-details="true"></v-checkbox>
+        </div>
         
-        <table id="tabelaInfo">
-            <thead>
-                <tr>
-                    <th class="w-50" scope="col">Nome</th>
-                    <th scope="col">Ações</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="student in filteredStudents" :key="student.id">
-                    <td>{{ student.name }}</td>
-                    <td>
-                        <v-btn @click="ViewWorkout(student.id)" variant="outlined" color="success" density="compact"
-                            class="mr-4 text-capitalize">Ver</v-btn>
-                        <v-btn @click="CreateWorkout(student.id)" variant="outlined" color="success" density="compact"
-                            class="text-capitalize">Montar treino</v-btn>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        
     </v-container>
 </template>
 
@@ -54,6 +38,7 @@ export default {
         return {
             toggle: null,
             student_id: '',
+            student_name: '',
             workouts: [ ]
 
         }
@@ -73,7 +58,9 @@ export default {
     },
     mounted() {
         this.student_id=this.$route.params.id 
+        this.student_name=this.$route.params.name 
         this.getWorkouts()
+        console.log(moment.locale(pt-br).format('cccc'))
     }
 
 }
