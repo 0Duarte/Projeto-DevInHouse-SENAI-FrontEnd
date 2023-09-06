@@ -2,7 +2,7 @@
   <v-container>
     <header class="d-flex justify-space-between">
       <h2>Alunos</h2>
-      <v-btn color="success" variant='outlined'>Novo</v-btn>
+      <router-link to="/student/new"><v-btn color="success" variant='outlined'>Novo</v-btn></router-link>
     </header>
     <v-divider class="mt-2" color="black" :thickness="3"></v-divider>
 
