@@ -1,7 +1,10 @@
 <template>
   <v-container>
     <header class="d-flex justify-space-between">
-      <h2>Alunos</h2>
+      <div class="d-flex align-end">
+        <img class="mr-4" width="50" height="50" src="https://img.icons8.com/doodle/48/group--v1.png" alt="crowd"/>
+        <h2>Alunos</h2>
+      </div>
       <router-link to="/student/new"><v-btn color="success" variant='outlined'>Novo</v-btn></router-link>
     </header>
     <v-divider class="mt-2" color="black" :thickness="3"></v-divider>
