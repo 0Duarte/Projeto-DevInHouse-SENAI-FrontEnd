@@ -1,6 +1,11 @@
 <template>
     <v-form @submit.prevent="handleWorkout" ref="form" class="d-flex h-100 align-center">
         <v-card class="mx-auto pa-12 pb-8" elevation="8" width="800" rounded="lg">
+            <div class="d-flex mb-1">
+                <img width="64" height="64" src="https://img.icons8.com/external-wanicon-lineal-color-wanicon/64/000000/external-workout-daily-routine-wanicon-lineal-color-wanicon.png" alt="external-workout-daily-routine-wanicon-lineal-color-wanicon"/>
+                <h1 class="pt-6">Treino</h1>
+            </div>
+            <v-divider class="" color="black" :thickness="3"></v-divider>
             <div>
                 <div>
                     <div class="text-subtitle-1 text-medium-emphasis d-flex align-center">Exercício</div>
