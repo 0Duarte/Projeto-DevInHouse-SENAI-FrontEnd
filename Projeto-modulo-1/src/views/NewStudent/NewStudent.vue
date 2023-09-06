@@ -1,6 +1,12 @@
 <template>
     <v-form @submit.prevent="handleSubmit" ref="form" class="d-flex h-100 align-center">
         <v-card class="mx-auto pa-12 pb-8" elevation="8" width="800" rounded="lg">
+            <div class="d-flex align-end mb-4">
+                <img width="64" height="64" src="https://img.icons8.com/cotton/64/000000/add-male-user--v2.png"
+                    alt="add-male-user--v2" />
+                <h2 class="ml-4 pt-1">Cadastro de aluno</h2>
+            </div>
+            <v-divider class="mb-2" color="black" :thickness="3"></v-divider>
             <div class="d-flex justify-space-between">
                 <div class="w-50 mr-4">
                     <div class="text-subtitle-1 text-medium-emphasis d-flex align-center">Nome completo</div>
@@ -82,6 +88,9 @@
                 </div>
             </div>
         </v-card>
+        <v-snackbar v-model="snackbar" timeout=2000 :color="colorSnack" elevation="5" variant="tonal" multi-line>
+            {{ this.snackText }}
+        </v-snackbar>
     </v-form>
 </template>
 
@@ -102,7 +111,10 @@ export default {
             street: '',
             neighborhood: '',
             complement: '',
-            today: moment(new Date).format("YYYY-MM-DD")
+            today: moment(new Date).format("YYYY-MM-DD"),
+            snackText: '',
+            snackbar: false,
+            colorSnack: ''
         }
     },
     methods: {
@@ -128,23 +140,22 @@ export default {
                     complment: this.complement
                 }
             })
-            .then(()=>{
-                alert("aluno cadastrado com sucesso")
-                this.$refs.form.reset()
-            })
-            .catch((error)=>{
-                alert("falha no cadastro")
-            })
+                .then(() => {
+                    this.snackText="Aluno cadastrado com sucesso!", this.snackbar=true
+                    this.colorSnack='success'
+                    this.$refs.form.reset()
+                })
+                .catch((error) => {
+                    this.snackText="Falha ao cadastrar aluno", this.snackbar=true
+                    this.colorSnack='error'
+                })
 
         },
         useCep() {
-            const token= localStorage.getItem('user_token')
             axios({
                 url: `http://viacep.com.br/ws/${this.cep}/json/`,
                 method: 'GET',
-                headers: {
-                    Authorization: `Bearen ${token}`
-                }
+                
             })
                 .then((res) => {
 
