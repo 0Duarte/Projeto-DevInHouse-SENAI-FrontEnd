@@ -152,13 +152,10 @@ export default {
 
         },
         useCep() {
-            const token = localStorage.getItem('user_token')
             axios({
                 url: `http://viacep.com.br/ws/${this.cep}/json/`,
                 method: 'GET',
-                headers: {
-                    Authorization: `Bearen ${token}`
-                }
+                
             })
                 .then((res) => {
 
