@@ -3,19 +3,19 @@
         <header class="d-flex justify-space-between">
             <h3>Treinos - {{ this.student_name }} </h3>
         </header>
-        <v-divider class="mt-2" color="black" :thickness="3"></v-divider>
+        <v-divider class="mt-2 mb-2" color="black" :thickness="3"></v-divider>
 
-        <h1>Hoje</h1>
+        <h1 class="mb-6">Hoje</h1>
 
         <div v-for="workout in filteredWorkout">
-            <v-checkbox
+            <v-checkbox v-model="check" @change="checkboxChanged(workout.id, workout.day)"
                 :label="`${workout.exercise_description} | ${workout.weight}KG | ${workout.repetitions} repetições | ${workout.break_time} min de pausa`"
                 density="compact" hide-details="true"></v-checkbox>
         </div>
 
 
         <div class="d-flex align-center flex-column mt-15">
-            <v-btn-toggle  color=deep-orange variant="elevated" v-model="toggleDay" divided elevation="3">
+            <v-btn-toggle color=deep-orange variant="elevated" v-model="toggleDay" divided elevation="3">
                 <v-btn class="text-capitalize" value="segunda">Segunda</v-btn>
                 <v-btn class="text-capitalize" value="terca">Terca</v-btn>
                 <v-btn class="text-capitalize" value="quarta">Quarta</v-btn>
@@ -30,6 +30,10 @@
                 {{ workout.repetitions }} repetições | {{ workout.break_time }} min de pausa</p>
         </v-card>
 
+        <v-snackbar v-model="snackbar" timeout=2000 :color="colorSnack"
+      elevation="5" variant="tonal" multi-line>
+            {{ this.snackText }}
+        </v-snackbar>
 
     </v-container>
 </template>
@@ -45,7 +49,12 @@ export default {
             student_name: '',
             workouts: [],
             day: '',
-            toggleDay: ""
+            toggleDay: "",
+            check: '',
+            snackText: '',
+            snackbar: false,
+            colorSnack: ''
+            
 
 
         }
@@ -58,23 +67,48 @@ export default {
             })
                 .then((res) => {
                     this.workouts = (res.data.workouts)
+                    
                 })
                 .catch(() => {
-                    console.log("deu ruim")
+                    this.snackText='Erro ao carregar dados dos treinos', this.snackbar=true
+                    this.colorSnack='error'
                 })
         },
         getDay() {
             let today = moment(new Date).format('dddd')
             this.day = today === "Sunday" ? "domingo" :
                 today === "Saturday" ? "sabado" :
-                today === "Monday" ? "segunda" :
-                today === "Tuesday" ? "terca" :
-                today === "Wednesday" ? "quarta" :
-                today === "Thursday" ? "quinta" :
-                today === "Friday" ? "sexta" :
-                this.day;
+                    today === "Monday" ? "segunda" :
+                        today === "Tuesday" ? "terca" :
+                            today === "Wednesday" ? "quarta" :
+                                today === "Thursday" ? "quinta" :
+                                    today === "Friday" ? "sexta" :
+                                        this.day;
+
+        }, checkboxChanged(id, day) {
+            if (this.check) {
+                axios({
+                    url: 'http://localhost:3000/workouts/check',
+                    method: 'POST',
+                    data: {
+                        workout_id: id,
+                        student_id: this.student_id,
+                        day_of_week: day
+
+                    }
+                })
+                .then((res)=>{
+                    this.snackText=res.data.message, this.snackbar=true
+                    this.colorSnack='success'
+                })
+                .catch(()=>{
+                    this.snackText='Erro ao concluir treino', this.snackbar=true
+                    this.colorSnack='error'
+                })
+            }
 
         }
+
     },
     mounted() {
         this.student_id = this.$route.params.id
