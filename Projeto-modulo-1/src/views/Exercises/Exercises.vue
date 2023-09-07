@@ -44,7 +44,10 @@ export default {
                 })
         },
         exerciseRegister() {
-            axios.post('http://localhost:3000/exercises',
+            if(this.exerciseDescription===''){
+                alert('Insira um valor')
+            } else {
+                axios.post('http://localhost:3000/exercises',
                 {
                     description: this.exerciseDescription
                 })
@@ -55,6 +58,8 @@ export default {
                 .catch((error)=>{
                     console.log("Erro ao cadastrar")
                 })
+            }
+            
         }
     },
     mounted(){
