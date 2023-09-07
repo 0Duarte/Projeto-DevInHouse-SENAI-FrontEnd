@@ -17,6 +17,7 @@
           <div class="d-flex flex-column ">
             <p class="mb-2">{{this.errors.email}}</p>
             <p>{{this.errors.password}}</p>
+            <p>{{this.errors.InvalidLogin}}</p>
           </div>
         </v-card-text>
       </v-card>
@@ -80,7 +81,12 @@ export default {
             
           })
           .catch((error)=>{
-            console.log(error)
+            if(error.response.data.error){
+              this.errors={InvalidLogin: error.response.data.error}
+            }
+          })
+          .catch(()=>{
+            alert("Erro ao fazer autenticação no servidor")
           })
 
       } catch (error) {
