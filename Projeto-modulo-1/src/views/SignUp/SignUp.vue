@@ -78,11 +78,11 @@ export default {
                     password:
                         yup.string()
                         .min(8, 'A senha deve ser maior')
-                        .max(20, 'Deve ter entre 8-20 letras')
+                        .max(20, 'Deve ter entre 8-20 caracteres')
                         .required("Senha é obrigatória"),
                     verifyPassword: yup
                         .string()
-                        .required('A confirmação necessária')
+                        .required('A confirmação de senhas é necessária')
                         .oneOf([yup.ref('password')], 'As senhas devem coincidir'),
                     planSelected: yup.string().required("Escolha um plano")
                 })
