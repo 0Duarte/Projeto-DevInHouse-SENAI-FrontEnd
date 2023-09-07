@@ -45,13 +45,14 @@ export default {
         },
         exerciseRegister() {
             if(this.exerciseDescription===''){
-                alert('Insira um valor')
+                alert('O nome do exercício é obrigatório')
             } else {
                 axios.post('http://localhost:3000/exercises',
                 {
                     description: this.exerciseDescription
                 })
                 .then(()=>{
+                    alert("Exercício cadastrado com sucesso")
                     this.loadExercises()
                     this.exerciseDescription= ""
                 })
