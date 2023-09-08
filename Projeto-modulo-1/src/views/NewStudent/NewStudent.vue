@@ -18,7 +18,8 @@
                     <div class="text-subtitle-1 text-medium-emphasis d-flex align-center">Email</div>
                     <v-text-field type="email" v-model="email" density="compact" placeholder="xxxx@xxx.com"
                         variant="outlined"
-                        :rules="[v => !!(v || '').match(/@/) || 'Utilize um email válido']"></v-text-field>
+                        :rules="[value => !value || /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(value) || 'Insira um email válido.']"></v-text-field>
+                        
                 </div>
             </div>
 
@@ -32,7 +33,7 @@
                 <div class="w-50">
                     <div class="text-subtitle-1 text-medium-emphasis d-flex align-center">Data de nascimento</div>
                     <v-text-field type="date" v-model="date" density="compact" placeholder="(00) 00000-0000"
-                        variant="outlined" :rules="[v => v < this.today || 'Data futura']"></v-text-field>
+                        variant="outlined" :rules="[v => v < this.today || 'Insira uma data válida']"></v-text-field>
                 </div>
 
             </div>
@@ -40,8 +41,8 @@
             <div class="d-flex justify-space-between">
                 <div class="w-25 mr-3">
                     <div class="text-subtitle-1 text-medium-emphasis d-flex align-center">CEP</div>
-                    <v-text-field type="number" v-model="cep" density="compact" placeholder="00000-000" variant="outlined"
-                        @blur="useCep" :rules="[v => !!v || 'CEP é obrigatório']"></v-text-field>
+                    <v-text-field type="number" v-model="cep" density="compact" placeholder="00000000" variant="outlined"
+                        @blur="useCep" :rules="[v => !!v || 'CEP é obrigatório', v=> v>0 || 'Valor inválido']"></v-text-field>
                 </div>
 
                 <div class="w-25 mr-3">
@@ -60,7 +61,7 @@
                 <div class="w-50 mr-4">
                     <div class="text-subtitle-1 text-medium-emphasis d-flex align-center">Número</div>
                     <v-text-field type="number" v-model="number" density="compact" variant="outlined"
-                        :rules="[v => !!v || 'Número é obrigatório']"></v-text-field>
+                        :rules="[v => !!v || 'Número é obrigatório', v=> v>0 || 'Valor inválido']"></v-text-field>
                 </div>
 
                 <div class="w-50 mr-4">
@@ -160,9 +161,9 @@ export default {
                 .then((res) => {
 
                     this.province = res.data.uf,
-                        this.city = res.data.localidade,
-                        this.street = res.data.logradouro,
-                        this.neighborhood = res.data.bairro
+                    this.city = res.data.localidade,
+                    this.street = res.data.logradouro,
+                    this.neighborhood = res.data.bairro
                 })
         }
     }
