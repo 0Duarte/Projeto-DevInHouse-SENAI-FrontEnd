@@ -120,9 +120,6 @@ export default {
                 
                 url: 'http://localhost:3000/workouts',
                 method: 'POST',
-                headers: {
-                    Authorization: `Bearen ${token}`
-                },
                 data:{
                     student_id:  this.$route.params.id,
                     exercise_id: this.exerciseId,
