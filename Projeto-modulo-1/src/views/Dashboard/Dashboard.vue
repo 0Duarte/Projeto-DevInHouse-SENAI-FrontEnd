@@ -10,8 +10,8 @@
                                 <div class="text-h6 mb-1">{{this.amountStudents}} Alunos</div>
                         </v-card-item>
                         <v-card-actions>
-                            <v-btn variant="outlined">
-                                Adicionar
+                            <v-btn variant="outlined" >
+                                <router-link to="/student/new" class="text-black text-decoration-none">Adicionar</router-link>
                             </v-btn>
                         </v-card-actions>
                     </div>
@@ -23,8 +23,8 @@
                                 <div class="text-h6 mb-1">{{this.amountExercises}} Exercícios</div>
                         </v-card-item>
                         <v-card-actions>
-                            <v-btn variant="outlined">
-                                Adicionar
+                            <v-btn variant="outlined" >
+                                <router-link to="/exercises" class="text-black text-decoration-none">Adicionar</router-link>
                             </v-btn>
                         </v-card-actions>
                     </div>
