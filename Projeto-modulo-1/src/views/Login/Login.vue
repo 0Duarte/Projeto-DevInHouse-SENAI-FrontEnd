@@ -84,7 +84,7 @@ export default {
           .then((response)=>{
             localStorage.setItem("user_token", response.data.token)
             localStorage.setItem("user_name", response.data.name)
-            console.log("usuario existe")
+            this.$router.push('/dashboard')
             
           })
           .catch((error)=>{
@@ -99,10 +99,7 @@ export default {
 
       } catch (error) {
         if (error instanceof yup.ValidationError) {
-          console.log(error)
-          // capturar os errors do yup
           this.errors = captureErrorYup(error)
-          console.log(this.errors)
         }
       }
     }
