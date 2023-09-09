@@ -33,6 +33,10 @@
         </router-link>
       </v-card-text>
     </v-card>
+    <v-snackbar v-model="snackbar" timeout=2000 :color="colorSnack"
+      elevation="5" variant="tonal" multi-line>
+            {{ this.snackText }}
+        </v-snackbar>
   </div>
 </template>
 
@@ -46,7 +50,10 @@ export default {
     return {
       email: "",
       password: "",
-      errors: []
+      errors: [],
+      snackText: '',
+      snackbar: false,
+      colorSnack: ''
     }
   },
   methods: {
@@ -86,7 +93,8 @@ export default {
             }
           })
           .catch(()=>{
-            alert("Erro ao fazer autenticação no servidor")
+            this.snackText='Erro de autenticação no servidor', this.snackbar=true
+            this.colorSnack='error'
           })
 
       } catch (error) {
