@@ -39,7 +39,7 @@
     },
     computed: {
     shouldRenderComponent() {
-      const excludedRoutes = ['/login', '/signup'];
+      const excludedRoutes = ['/', '/signup'];
       return !excludedRoutes.includes(this.$route.path);
     }
   }
