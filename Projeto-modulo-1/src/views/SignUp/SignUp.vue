@@ -128,7 +128,8 @@ export default {
 
                     })
                     .catch(() => {
-                        console.log("Não foi possível criar a conta nesse momento")
+                        this.snackText = 'Não foi possivel criar a conta nesse momento', this.snackbar = true
+                        this.colorSnack = 'error'
                     })
 
 
