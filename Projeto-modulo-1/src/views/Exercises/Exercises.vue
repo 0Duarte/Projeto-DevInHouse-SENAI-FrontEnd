@@ -23,6 +23,10 @@
                 </tr>
             </tbody>
         </table>
+        <v-snackbar v-model="snackbar" timeout=2000 :color="colorSnack"
+      elevation="5" variant="tonal" multi-line>
+            {{ this.snackText }}
+        </v-snackbar>
     </v-container>
 </template>
 
@@ -33,7 +37,10 @@ export default {
     data() {
         return {
             exercises: [],
-            exerciseDescription: ''
+            exerciseDescription: '',
+            snackText: '',
+            snackbar: false,
+            colorSnack: ''
         }
     },
     methods: {
@@ -52,7 +59,8 @@ export default {
                     description: this.exerciseDescription
                 })
                 .then(()=>{
-                    alert("Exercício cadastrado com sucesso")
+                    this.snackText='Exercício cadastrado com sucesso', this.snackbar=true
+                    this.colorSnack='success'
                     this.loadExercises()
                     this.exerciseDescription= ""
                 })
