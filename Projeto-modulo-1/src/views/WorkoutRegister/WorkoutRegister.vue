@@ -53,6 +53,10 @@
                     </v-btn>
                 </div>
             </div>
+            <v-snackbar v-model="snackbar" timeout=2000 :color="colorSnack"
+            elevation="5" variant="tonal" multi-line>
+            {{ this.snackText }}
+        </v-snackbar>
         </v-card>
     </v-form>
 </template>
@@ -80,7 +84,10 @@ export default {
             day: '',
             exercises: [],
             exerciseId: '',
-            studentId: ''
+            studentId: '',
+            snackText: '',
+            snackbar: false,
+            colorSnack: ''
         }
     },
     methods: {
@@ -131,11 +138,13 @@ export default {
                 }
             })
             .then(()=>{
-                console.log("Sucesso ao cadastrar treino")
+                this.snackText='Treino cadastrado com sucesso', this.snackbar=true
+                this.colorSnack='success'
                 this.$refs.form.reset()
             })
             .catch((err)=>{
-                console.log("Erro ao cadastrar treino")
+                this.snackText='Erro ao cadastrar treino', this.snackbar=true
+                this.colorSnack='error'
             })
         },
         getStudentId(){
