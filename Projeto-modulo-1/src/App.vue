@@ -2,11 +2,12 @@
   <v-layout>
     <v-app-bar v-if="shouldRenderComponent" color="rgb(246, 86, 38)">
       <v-app-bar-title>
+        <router-link to="/dashboard" class="text-white text-decoration-none">
         <v-icon>mdi-dumbbell</v-icon>
-        <v-btn @click="testaRota">
-          <p>Projeto 1</p>
+        <v-btn>
+          <p>GymPro</p>
         </v-btn>
-        <router-link to="/"></router-link>
+        </router-link>
       </v-app-bar-title>
 
       <v-btn>
@@ -31,9 +32,7 @@
 <script>
 export default {
   methods: {
-    testaRota() {
-      console.log(this.$route.path)
-    }
+    
   },
   computed: {
     shouldRenderComponent() {
