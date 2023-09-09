@@ -9,7 +9,7 @@
         <h1 class="mb-6">Hoje</h1>
 
         <div v-for="workout in filteredWorkout">
-            <v-checkbox v-model="check" @change="checkboxChanged(workout.id, workout.day)"
+            <v-checkbox v-model="checkedWorkouts[workout.id]" @change="checkboxChanged(workout.id, workout.day)"
                 :label="`${workout.exercise_description} | ${workout.weight}KG | ${workout.repetitions} repetições | ${workout.break_time} min de pausa`"
                 density="compact" hide-details="true"></v-checkbox>
         </div>
@@ -51,7 +51,7 @@ export default {
             workouts: [],
             day: '',
             toggleDay: "",
-            check: '',
+            checkedWorkouts: {},
             snackText: '',
             snackbar: false,
             colorSnack: ''
@@ -85,7 +85,7 @@ export default {
                                         this.day;
 
         }, checkboxChanged(id, day) {
-            if (this.check) {
+            if (this.checkedWorkouts[id]) {
                 axios({
                     url: 'http://localhost:3000/workouts/check',
                     method: 'POST',
