@@ -46,12 +46,17 @@
                         placeholder="Observações para o treino"></v-text-field>
                 </div>
             </div>
-            <div class="d-flex justify-end">
-                <div class="w-25">
-                    <v-btn type="submit" block color="rgb(255, 103, 39)" size="large" variant="elevated">
-                        Cadastrar
-                    </v-btn>
-                </div>
+            <div class="d-flex justify-space-between">
+                    <div>
+                        <v-btn @click="backRoute" class="w-25 " block color=red-lighten-1 size="large" variant="elevated">
+                            Voltar
+                        </v-btn>
+                    </div>
+                    <div>
+                        <v-btn class="w-25 " type="submit" block color="rgb(255, 103, 39)" size="large" variant="elevated">
+                            Cadastrar
+                        </v-btn>
+                    </div>
             </div>
             <v-snackbar v-model="snackbar" timeout=2000 :color="colorSnack"
             elevation="5" variant="tonal" multi-line>
@@ -149,6 +154,9 @@ export default {
         },
         getStudentId(){
             this.studentId = this.$route.params.id
+        },
+        backRoute(){
+            this.$router.go(-1)
         }
     },
     mounted() {
