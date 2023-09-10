@@ -1,54 +1,60 @@
 <template>
-    <div>
-        <v-card class="mx-auto pa-12 pb-8" elevation="8" max-width="448" rounded="lg">
+    <div id="background" class="h-100">
 
-            <div class="text-subtitle-1 text-medium-emphasis">Nome completo</div>
-            <v-text-field v-model="name" density="compact" placeholder="Seu nome completo"
-                prepend-inner-icon="mdi-account-circle-outline" variant="outlined"></v-text-field>
-
-            <div class="text-subtitle-1 text-medium-emphasis">Email</div>
-            <v-text-field v-model="email" density="compact" placeholder="Seu melhor email"
-                prepend-inner-icon="mdi-email-outline" variant="outlined"></v-text-field>
-
-            <div class="text-subtitle-1 text-medium-emphasis d-flex align-center justify-space-between">Senha</div>
-            <v-text-field v-model="password" type="password" density="compact" placeholder="Coloque sua senha"
-                prepend-inner-icon="mdi-lock-outline" variant="outlined"></v-text-field>
-
-            <div class="text-subtitle-1 text-medium-emphasis d-flex align-center justify-space-between">Confirme a senha
-            </div>
-            <v-text-field v-model="passwordConfirm" type="password" density="compact" placeholder="Confirme sua senha"
-                prepend-inner-icon="mdi-lock-outline" variant="outlined"></v-text-field>
-
-            <div density="compact" class="text-subtitle-1 text-medium-emphasis">Selecione o plano</div>
-            <v-select density="compact" :items="items" item-value="value" variant="outlined" item-title="plan"
-                v-model="planSelected"></v-select>
-
-            <v-card v-if="errors.length != 0" class="mb-4">
-                <v-card-text class="text-medium-emphasis text-caption">
-                    <div class="d-flex flex-column">
-                        <p>{{ this.errors.name }}</p>
-                        <p>{{ this.errors.email }}</p>
-                        <p>{{ this.errors.password }}</p>
-                        <p>{{ this.errors.verifyPassword }}</p>
-                        <p>{{ this.errors.planSelected }}</p>
+        <div class="h-100 d-flex align-center justify-center">
+            <v-card class="pa-12 w-50" elevation="8" rounded="8">
+                <div class="d-flex h-100">
+                    <div class="w-50 align-center justify-center">
+                        <h1 class="text-yellow-darken-4">GymPro</h1>
+                        <img class="w-100 h-80" src="../../utils/undraw_Personal_trainer_re_cnua.png" alt="">
                     </div>
-                </v-card-text>
+
+                    <div class="d-flex flex-column w-50 ">
+                        <div class="text-subtitle-1 text-medium-emphasis">Nome completo</div>
+                        <v-text-field v-model="name" density="compact" placeholder="Seu nome completo"
+                            prepend-inner-icon="mdi-account-circle-outline" variant="outlined"></v-text-field>
+                        <div class="text-subtitle-1 text-medium-emphasis">Email</div>
+                        <v-text-field v-model="email" density="compact" placeholder="Seu melhor email"
+                            prepend-inner-icon="mdi-email-outline" variant="outlined"></v-text-field>
+                        <div class="text-subtitle-1 text-medium-emphasis d-flex align-center justify-space-between">Senha</div>
+                        <v-text-field v-model="password" type="password" density="compact" placeholder="Coloque sua senha"
+                            prepend-inner-icon="mdi-lock-outline" variant="outlined"></v-text-field>
+                        <div class="text-subtitle-1 text-medium-emphasis d-flex align-center justify-space-between">Confirme a
+                            senha
+                        </div>
+                        <v-text-field v-model="passwordConfirm" type="password" density="compact"
+                            placeholder="Confirme sua senha" prepend-inner-icon="mdi-lock-outline"
+                            variant="outlined"></v-text-field>
+                        <div density="compact" class="text-subtitle-1 text-medium-emphasis">Selecione o plano</div>
+                        <v-select density="compact" :items="items" item-value="value" variant="outlined" item-title="plan"
+                            v-model="planSelected"></v-select>
+                        <v-card v-if="errors.length != 0" class="mb-4">
+                            <v-card-text class="text-medium-emphasis text-caption">
+                                <div class="d-flex flex-column">
+                                    <p>{{ this.errors.name }}</p>
+                                    <p>{{ this.errors.email }}</p>
+                                    <p>{{ this.errors.password }}</p>
+                                    <p>{{ this.errors.verifyPassword }}</p>
+                                    <p>{{ this.errors.planSelected }}</p>
+                                </div>
+                            </v-card-text>
+                        </v-card>
+                        <v-btn block class="mb-8" color="rgb(255, 103, 39)" size="large" variant="elevated" @click="handleSignUp">
+                            Cadastrar
+                        </v-btn>
+                        <v-card-text class="text-center">
+                            <p>Já possui uma conta?</p>
+                            <router-link to="/" class="text-deep-orange-darken-1 text-decoration-none">Fazer login<v-icon
+                                    icon="mdi-chevron-right"></v-icon>
+                            </router-link>
+                        </v-card-text>
+                    </div>
+                </div>
             </v-card>
-
-            <v-btn block class="mb-8" color="blue" size="large" variant="tonal" @click="handleSignUp">
-                Cadastrar
-            </v-btn>
-
-            <v-card-text class="text-center">
-                <p>Já possui uma conta?</p>
-                <router-link to="/" class="text-blue text-decoration-none">Fazer login<v-icon
-                        icon="mdi-chevron-right"></v-icon>
-                </router-link>
-            </v-card-text>
-            <v-snackbar v-model="snackbar" timeout=2000 :color="colorSnack" elevation="5" variant="tonal" multi-line>
-                {{ this.snackText }}
-            </v-snackbar>
-        </v-card>
+        </div>
+        <v-snackbar v-model="snackbar" timeout=2000 :color="colorSnack" elevation="5" variant="tonal" multi-line>
+            {{ this.snackText }}
+        </v-snackbar>
     </div>
 </template>
 
@@ -143,3 +149,9 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+#background {
+    background: linear-gradient(to right, #ff9900a1, #fc7634);
+}
+</style>

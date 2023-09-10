@@ -2,14 +2,15 @@
   <div id="background" class="h-100">
     <div class="h-100 d-flex align-center justify-center">
 
-      <v-card class="pa-12 pb-8 w-50 h-50" elevation="0" rounded="0">
+      <v-card class="pa-12 pb-8 w-50 h-50" min-height="715.88" elevation="8" rounded="8">
         <div class="d-flex h-100">
           <div class="w-50 align-center justify-center">
             <h1 class="text-yellow-darken-4">GymPro</h1>
             <img class="w-100 h-80" src="../../utils/undraw_Personal_trainer_re_cnua.png" alt="">
           </div>
 
-          <div class="d-flex flex-column w-50 ">
+          <div class="d-flex flex-column w-50 justify-center">
+            <h4 class="text-blue-grey mb-15">Entre agora para o time das melhores academias do Brasil!</h4>
             <div>
               <div class="text-subtitle-1 text-medium-emphasis">Email</div>
               <v-text-field v-model="email" density="compact" placeholder="Seu melhor email"
@@ -34,12 +35,12 @@
                 Entrar
               </v-btn>
             </div>
-            <v-card-text class="text-center">
+            <div class="text-center">
               <p>Ainda não tem conta?</p>
               <router-link to="/signup" class="text-deep-orange-darken-1 text-decoration-none">
                 Cadastre-se<v-icon icon="mdi-chevron-right"></v-icon>
               </router-link>
-            </v-card-text>
+            </div>
           </div>
         </div>
       </v-card>
