@@ -3,7 +3,7 @@
     <v-app-bar v-if="shouldRenderComponent" color="rgb(246, 86, 38)">
       <v-app-bar-title>
         <router-link to="/dashboard" class="text-white text-decoration-none">
-          <img src="./utils/logobranca.png" width="125" alt="">
+          <img src="./utils/logobranca1.png" width="110" alt="">
         </router-link>
       </v-app-bar-title>
 
