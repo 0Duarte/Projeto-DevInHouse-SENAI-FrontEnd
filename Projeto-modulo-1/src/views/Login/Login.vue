@@ -10,7 +10,7 @@
           </div>
 
           <div class="d-flex flex-column w-50 justify-center">
-            <h4 class="text-blue-grey mb-15">Entre agora para o time das melhores academias do Brasil!</h4>
+            
             <div>
               <div class="text-subtitle-1 text-medium-emphasis">Email</div>
               <v-text-field v-model="email" density="compact" placeholder="Seu melhor email"
