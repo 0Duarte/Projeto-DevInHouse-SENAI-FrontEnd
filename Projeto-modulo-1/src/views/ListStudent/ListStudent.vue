@@ -23,8 +23,8 @@
         <tr v-for="student in filteredStudents" :key="student.id">
           <td>{{ student.name }}</td>
           <td>
-            <v-btn @click="ViewWorkout(student.id,student.name)" variant="outlined" color="success" density="compact" class="mr-4 text-capitalize">Ver</v-btn>
-            <v-btn @click="CreateWorkout(student.id, student.name)" variant="outlined" color="success" density="compact" class="text-capitalize">Montar treino</v-btn>
+            <v-btn @click="ViewWorkout(student.id,student.name)" variant="tonal" color="rgb(255, 103, 39)" density="compact" class="mr-4 text-capitalize">Ver</v-btn>
+            <v-btn @click="CreateWorkout(student.id, student.name)" variant="tonal" color="success" density="compact" class="text-capitalize">Montar treino</v-btn>
           </td>
         </tr>
       </tbody>
