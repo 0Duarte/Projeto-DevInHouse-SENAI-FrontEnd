@@ -1,30 +1,30 @@
 <template>
-    <v-container  class="d-flex flex-column mt-15">
+    <v-container class="d-flex flex-column mt-15">
         <div>
             <h1>Bem vindo, {{this.userName}}</h1>
         </div>
         <div class="d-flex flex-wrap my-15 justify-space-around">
-            <v-card class="d-flex w-100" size="x-large" max-width="344" variant="outlined">
+            <v-card class="d-flex w-100 bg-orange-accent-2" size="x-large" max-width="344" variant="elevated" elevation="8">
                     <div>
                         <v-card-item>
-                                <div class="text-h6 mb-1">{{this.amountStudents}} Alunos</div>
+                                <div class="text-h6 mb-1 text-white">{{this.amountStudents}} Alunos</div>
                         </v-card-item>
                         <v-card-actions>
-                            <v-btn variant="outlined" >
-                                <router-link to="/student/new" class="text-black text-decoration-none">Adicionar</router-link>
+                            <v-btn>
+                                <router-link to="/student/new" class="text-white text-decoration-none">Adicionar</router-link>
                             </v-btn>
                         </v-card-actions>
                     </div>
             </v-card>
 
-            <v-card class="d-flex w-100" size="x-large" max-width="344" variant="outlined">
-                    <div>
+            <v-card class="d-flex w-100 bg-orange-accent-2" size="x-large" max-width="344" variant="elevated" elevation="8">
+                    <div >
                         <v-card-item>
-                                <div class="text-h6 mb-1">{{this.amountExercises}} Exercícios</div>
+                                <div class="text-h6 mb-1 text-white">{{this.amountExercises}} Exercícios</div>
                         </v-card-item>
                         <v-card-actions>
-                            <v-btn variant="outlined" >
-                                <router-link to="/exercises" class="text-black text-decoration-none">Adicionar</router-link>
+                            <v-btn>
+                                <router-link to="/exercises" class="text-white text-decoration-none">Adicionar</router-link>
                             </v-btn>
                         </v-card-actions>
                     </div>
