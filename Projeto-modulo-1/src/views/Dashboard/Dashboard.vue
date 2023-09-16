@@ -7,7 +7,7 @@
             <v-card class="d-flex w-100 bg-orange-accent-2" size="x-large" max-width="344" variant="elevated" elevation="8">
                     <div>
                         <v-card-item>
-                                <div class="text-h6 mb-1 text-white">{{this.amountStudents}} Alunos</div>
+                                <div class="text-h6 mb-1 text-white">{{this.amountStudents}} Aluno(s)</div>
                         </v-card-item>
                         <v-card-actions>
                             <v-btn>
@@ -20,7 +20,7 @@
             <v-card class="d-flex w-100 bg-orange-accent-2" size="x-large" max-width="344" variant="elevated" elevation="8">
                     <div >
                         <v-card-item>
-                                <div class="text-h6 mb-1 text-white">{{this.amountExercises}} Exercícios</div>
+                                <div class="text-h6 mb-1 text-white">{{this.amountExercises}} Exercício(s)</div>
                         </v-card-item>
                         <v-card-actions>
                             <v-btn>
