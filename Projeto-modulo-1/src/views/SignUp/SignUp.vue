@@ -126,7 +126,7 @@ export default {
                 })
 
                     .then(() => {
-                        this.snackText = 'Exercício cadastrado com sucesso, redirecionando...', this.snackbar = true
+                        this.snackText = 'Usuário cadastrado com sucesso, redirecionando...', this.snackbar = true
                         this.colorSnack = 'success'
                         setTimeout(() => {
                             this.$router.push('/');
