@@ -52,7 +52,8 @@ export default {
         },
         exerciseRegister() {
             if(this.exerciseDescription===''){
-                alert('O nome do exercício é obrigatório')
+                this.snackText='O nome do exercício é obrigatório', this.snackbar=true
+                this.colorSnack='error'
             } else {
                 axios.post('http://localhost:3000/exercises',
                 {
