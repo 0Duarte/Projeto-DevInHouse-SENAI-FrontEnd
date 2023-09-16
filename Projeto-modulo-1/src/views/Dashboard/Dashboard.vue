@@ -46,7 +46,6 @@ export default {
     },
     methods: {
         loadDashboard() {
-            console.log("entrou aq")
             const token= localStorage.getItem('user_token')
 
             axios({
@@ -68,7 +67,6 @@ export default {
     mounted(){
         this.loadDashboard()
         this.userName= localStorage.getItem('user_name')
-        console.log("entreou aq")
     }
 }
 </script>
