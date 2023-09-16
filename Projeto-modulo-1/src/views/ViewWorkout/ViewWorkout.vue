@@ -115,7 +115,6 @@ export default {
         this.getWorkouts()
         this.getDay()
         this.toggleDay = this.day
-        console.log(this.toggleDay)
 
     },
     computed: {
