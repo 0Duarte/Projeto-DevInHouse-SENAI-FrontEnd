@@ -21,6 +21,7 @@ As principais tecnologias utilizadas no projeto foram:
 - **Vuetify:** Biblioteca de componentes CSS baseada em Vue.js
 - **Axios:** Cliente HTTP para o consumo de API
 - **Moment:** Biblioteca para o tratamento de datas
+- **YUP:** Validações de informações
 - **Vue-Router:** Roteamento de páginas e informações dinâmicas via rotas
 - **Git/Github:** Sistema de versionamento de código
 -  **Trello:** Uso da metodologia Kanban na execução do projeto
@@ -74,9 +75,8 @@ Para uma futura continuação do projeto os seguintes poderiam ser incrementados
 - Criação de telas exclusivas para alunos e professores.
 - Implementar funcionalidades em todas as tela que fazem uso de algum cadastro de treino, exercício ou aluno, para excluir ou editar.
 - Possibilidade de um calendário e opções de editar, na tela de treinos de cada aluno.
-- Integrar com api de medicamentos para buscar as informações de medicamentos detalhadas sem necessidade de preenchimento manual.
 - Criação de uma página de suporte com dicas e um guia para utilização do sistema.
-- Dashboard  com gráficos de desempenho e informações importantes.
+- Dashboard com gráficos de desempenho e informações importantes.
 ## ScreenShots
 
 | | | |
